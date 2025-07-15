@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Cá Nhân - Tạ Duy Công</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .name {
+            font-size: 28px;
+            color: #185a9d;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .slogan {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            color: #185a9d;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .info-label {
+            color: #185a9d;
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .skill-badge {
+            background: #e8f5e9;
+            color: #00796b;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: #00796b;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #185a9d;
+        }
+
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-title {
+            color: #185a9d;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .project-link {
+            color: #00796b;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #005a4e;
+        }
+
+        .project-features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .project-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .project-features li:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <img src="./avatar.jpg" alt="Tạ Duy Công" class="avatar">
+        <h1 class="name">Tạ Duy Công</h1>
+        <p class="slogan">"Đam mê công nghệ, không ngừng học hỏi và sáng tạo"</p>
+
+        <div class="section">
+            <h2 class="section-title">Thông Tin Liên Hệ</h2>
+            <div class="info-container">
+                <div class="info-item">
+                    <span class="info-label">Địa chỉ:</span>
+                    <span class="info-value">Xuân Đỉnh, Bắc Từ Liêm, Hà Nội</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Số điện thoại:</span>
+                    <span class="info-value">0936661875</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">congtd35@example.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Kỹ Năng</h2>
+            <div class="skills-container">
+                <span class="skill-badge">HTML</span>
+                <span class="skill-badge">CSS</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">Java</span>
+                <span class="skill-badge">C#</span>
+                <span class="skill-badge">Git</span>
+                <span class="skill-badge">Postgresql</span>
+                <span class="skill-badge">Mysql</span>
+                <span class="skill-badge">Docker</span>
+                <span class="skill-badge">Nginx</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Sở Thích</h2>
+            <div class="info-container">
+                <div class="info-item">
+                    <span class="info-label">Học tập:</span>
+                    <span class="info-value">Công nghệ mới, lập trình</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Thể thao:</span>
+                    <span class="info-value">Bóng đá, chạy bộ</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Giải trí:</span>
+                    <span class="info-value">Chơi game, xem phim</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Dự Án</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <h3 class="project-title">Trang Web Cá Nhân</h3>
+                    <a href="#" class="project-link" target="_blank">Xem dự án</a>
+                    <div class="project-features">
+                        <ul>
+                            <li>Thiết kế giao diện hiện đại</li>
+                            <li>Responsive trên mọi thiết bị</li>
+                            <li>Hỗ trợ tiếng Việt</li>
+                            <li>Hiệu ứng tương tác mượt mà</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote">
+            "Đừng bao giờ từ bỏ ước mơ của bạn. Những người thành công nhất là những người không bao giờ từ bỏ."
+        </div>
+    </div>
+
+    <script>
+        // Copy email to clipboard
+        const email = document.querySelector('.info-container .info-item:last-child');
+        email.addEventListener('click', () => {
+            const emailValue = email.querySelector('.info-value').textContent;
+            navigator.clipboard.writeText(emailValue);
+            email.querySelector('.info-value').textContent = 'Đã sao chép!';
+            setTimeout(() => {
+                email.querySelector('.info-value').textContent = emailValue;
+            }, 2000);
+        });
+
+        // Change slogan periodically
+        const slogans = [
+            '"Đam mê công nghệ, không ngừng học hỏi và sáng tạo"',
+            '"Xây dựng tương lai từ những dòng code"',
+            '"Sáng tạo không giới hạn"'
+        ];
+        let currentSlogan = 0;
+        const sloganElement = document.querySelector('.slogan');
+
+        function changeSlogan() {
+            currentSlogan = (currentSlogan + 1) % slogans.length;
+            sloganElement.textContent = slogans[currentSlogan];
+        }
+
+        setInterval(changeSlogan, 5000);
+
+        // Add animation to skills badges
+        const skillBadges = document.querySelectorAll('.skill-badge');
+        skillBadges.forEach((badge, index) => {
+            badge.style.animation = `fadeIn ${index * 0.2 + 1}s ease forwards`;
+        });
+    </script>
+</body>
+</html>
