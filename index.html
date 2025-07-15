@@ -68,6 +68,7 @@
             font-size: 18px;
             margin-bottom: 15px;
             font-weight: 600;
+            position: relative;
         }
 
         .info-container {
@@ -85,6 +86,155 @@
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+
+        /* Skills Styles */
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .skill-category {
+            width: 100%;
+        }
+
+        .skill-badge {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .skill-badge:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .skill-badge::after {
+            content: '+';
+            font-size: 18px;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-badge.active::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .advanced-skills {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 0 15px;
+        }
+
+        .advanced-skills.active {
+            max-height: 500px;
+        }
+
+        .skill-item {
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: #185a9d;
+        }
+
+        .skill-level {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .edit-icon {
+            cursor: pointer;
+            font-size: 18px;
+            color: #185a9d;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+            display: none;
+            float: right;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .section-title:hover .edit-icon {
+            display: inline-block;
+        }
+
+        .edit-icon:hover {
+            color: #154a82;
+            transform: scale(1.1);
+        }
+
+        .section.edit-mode .edit-icon {
+            display: inline-block;
+        }
+
+        .section.edit-mode .info-value {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 5px;
+            min-height: 20px;
+        }
+
+        .section.edit-mode .info-value::before {
+            content: attr(data-placeholder);
+            color: #666;
+            pointer-events: none;
+        }
+
+        .section.edit-mode .info-value:not(:empty)::before {
+            display: none;
+        }
+
+        .section.edit-mode .quote {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 40px;
+        }
+
+        .section.edit-mode .project-title {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 5px;
+            min-height: 20px;
+        }
+
+        .section.edit-mode .project-features ul {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 60px;
+        }
+
+        .section.edit-mode .project-features ul::before {
+            content: "Nhập các tính năng (mỗi tính năng một dòng)";
+            color: #666;
+            pointer-events: none;
+        }
+
+        .section.edit-mode .project-features ul:not(:empty)::before {
+            display: none;
         }
 
         .info-item:hover {
@@ -202,98 +352,181 @@
 </head>
 <body>
     <div class="profile-card">
-        <img src="./avatar.jpg" alt="Tạ Duy Công" class="avatar">
-        <h1 class="name">Tạ Duy Công</h1>
-        <p class="slogan">"Đam mê công nghệ, không ngừng học hỏi và sáng tạo"</p>
-
+        <img src="./avatar.jpg" alt="avatar" class="avatar">
+        <h1 class="name" contenteditable="false" id="name"></h1>
+        <p class="slogan" contenteditable="false">"Đam mê công nghệ, không ngừng học hỏi và sáng tạo"</p>
+        <!-- <button class="save-button" onclick="saveBasicInfo()">Lưu thông tin cơ bản</button> -->
         <div class="section">
-            <h2 class="section-title">Thông Tin Liên Hệ</h2>
+            <h2 class="section-title">
+                Thông Tin Liên Hệ
+                <span class="edit-icon" onclick="toggleEditMode(this)">✏️</span>
+            </h2>
             <div class="info-container">
                 <div class="info-item">
+                    <span class="info-label">Ngày sinh:</span>
+                    <span class="info-value" contenteditable="false" id="birthday"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Giới tính:</span>
+                    <span class="info-value" contenteditable="false" id="gender"></span>
+                </div>
+                <div class="info-item">
                     <span class="info-label">Địa chỉ:</span>
-                    <span class="info-value">Xuân Đỉnh, Bắc Từ Liêm, Hà Nội</span>
+                    <span class="info-value" contenteditable="false" id="address"></span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Số điện thoại:</span>
-                    <span class="info-value">0936661875</span>
+                    <span class="info-value" contenteditable="false" id="phone"></span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Email:</span>
-                    <span class="info-value">congtd35@example.com</span>
+                    <span class="info-value" contenteditable="false" id="email"></span>
                 </div>
             </div>
         </div>
-
         <div class="section">
-            <h2 class="section-title">Kỹ Năng</h2>
-            <div class="skills-container">
-                <span class="skill-badge">HTML</span>
-                <span class="skill-badge">CSS</span>
-                <span class="skill-badge">JavaScript</span>
-                <span class="skill-badge">React</span>
-                <span class="skill-badge">Python</span>
-                <span class="skill-badge">Java</span>
-                <span class="skill-badge">C#</span>
-                <span class="skill-badge">Git</span>
-                <span class="skill-badge">Postgresql</span>
-                <span class="skill-badge">Mysql</span>
-                <span class="skill-badge">Docker</span>
-                <span class="skill-badge">Nginx</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">Sở Thích</h2>
+            <h2 class="section-title">
+                Sở thích
+                <span class="edit-icon" onclick="toggleEditMode(this)">✏️</span>
+            </h2>
             <div class="info-container">
                 <div class="info-item">
                     <span class="info-label">Học tập:</span>
-                    <span class="info-value">Công nghệ mới, lập trình</span>
+                    <span class="info-value" contenteditable="false" id="hobby"></span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Thể thao:</span>
-                    <span class="info-value">Bóng đá, chạy bộ</span>
+                    <span class="info-value" contenteditable="false" id="sport"></span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Giải trí:</span>
-                    <span class="info-value">Chơi game, xem phim</span>
+                    <span class="info-value" contenteditable="false" id="entertainment"></span>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <h2 class="section-title">Dự Án</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <h3 class="project-title">Trang Web Cá Nhân</h3>
-                    <a href="#" class="project-link" target="_blank">Xem dự án</a>
-                    <div class="project-features">
-                        <ul>
-                            <li>Thiết kế giao diện hiện đại</li>
-                            <li>Responsive trên mọi thiết bị</li>
-                            <li>Hỗ trợ tiếng Việt</li>
-                            <li>Hiệu ứng tương tác mượt mà</li>
-                        </ul>
+            <h2 class="section-title">
+                Kỹ Năng
+                <span class="edit-icon" onclick="toggleEditMode(this)">✏️</span>
+            </h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skill-badge" data-category="frontend">
+                        <span class="skill-label">Frontend</span>
+                    </div>
+                    <div class="advanced-skills" data-category="frontend">
+                        <div class="skill-item">
+                            <span class="skill-name">HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-badge" data-category="application">
+                        <span class="skill-label">Application</span>
+                    </div>
+                    <div class="advanced-skills" data-category="application">
+                        <div class="skill-item">
+                            <span class="skill-name">WPF Framework</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">C#</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">XAML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-badge" data-category="backend">
+                        <span class="skill-label">Backend</span>
+                    </div>
+                    <div class="advanced-skills" data-category="backend">
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-badge" data-category="database">
+                        <span class="skill-label">Database</span>
+                    </div>
+                    <div class="advanced-skills" data-category="database">
+                        <div class="skill-item">
+                            <span class="skill-name">Mysql</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Postgesql</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Elasticsearch</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-badge" data-category="deploy">
+                        <span class="skill-label">Deploy</span>
+                    </div>
+                    <div class="advanced-skills" data-category="deploy">
+                        <div class="skill-item">
+                            <span class="skill-name">Nginx</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="quote">
-            "Đừng bao giờ từ bỏ ước mơ của bạn. Những người thành công nhất là những người không bao giờ từ bỏ."
+        <div class="section">
+            <h2 class="section-title">
+                Dự Án
+                <span class="edit-icon" onclick="toggleEditMode(this)">✏️</span>
+            </h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <h3 class="project-title" contenteditable="false">Website nghe nhạc</h3>
+                    <a href="https://music-by-duycong.vercel.app/" class="project-link" target="_blank">Xem dự án</a>
+                    <div class="project-features">
+                        <ul contenteditable="false">
+                            <li>Giao diện thân thiện, dễ sử dụng</li>
+                            <li>Phát lại và phát ngẫu nhiên</li>
+                            <li>Điều khiển phát nhạc đơn giản – phát/tạm dừng, tua tiến/lùi.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- <button class="save-button" onclick="saveProjectsInfo()">Lưu dự án</button> -->
+            </div>
+            <div class="section">
+                <h2 class="section-title">
+                    Lời Trích Dẫn
+                    <span class="edit-icon" onclick="toggleEditMode(this)">✏️</span>
+                </h2>
+                <div class="quote" contenteditable="false">
+                    "Đừng bao giờ từ bỏ ước mơ của bạn. Những người thành công nhất là những người không bao giờ từ bỏ."
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Copy email to clipboard
-        const email = document.querySelector('.info-container .info-item:last-child');
-        email.addEventListener('click', () => {
-            const emailValue = email.querySelector('.info-value').textContent;
-            navigator.clipboard.writeText(emailValue);
-            email.querySelector('.info-value').textContent = 'Đã sao chép!';
-            setTimeout(() => {
-                email.querySelector('.info-value').textContent = emailValue;
-            }, 2000);
-        });
 
         // Change slogan periodically
         const slogans = [
@@ -311,10 +544,188 @@
 
         setInterval(changeSlogan, 5000);
 
+        // Local Storage Functions
+        function saveToLocalStorage(key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
+
+        function loadFromLocalStorage(key) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        }
+
+        // Load saved data
+        function loadSavedData() {
+            // Load basic info
+            const basicInfo = loadFromLocalStorage('basicInfo') || {
+                name: "Tạ Duy Công",
+                birthday: "15/05/1999",
+                gender: "Nam",
+                address: "Hà Nội",
+                phone: "0936661875",
+                email: "congtd35@gmail.com"
+            };
+
+            document.getElementById('name').textContent = basicInfo.name;
+            document.getElementById('birthday').textContent = basicInfo.birthday;
+            document.getElementById('gender').textContent = basicInfo.gender;
+            document.getElementById('address').textContent = basicInfo.address;
+            document.getElementById('phone').textContent = basicInfo.phone;
+            document.getElementById('email').textContent = basicInfo.email;
+    
+
+            // Load hobbies info
+            const hobbiesInfo = loadFromLocalStorage('hobbiesInfo') || {
+                hobbies: "Công nghệ mới, lập trình",
+                sport: "Gym, Cầu lông",
+                entertainment: "Chơi game, xem phim"
+            };
+
+            document.getElementById('hobby').textContent = hobbiesInfo.hobbies;
+            document.getElementById('sport').textContent = hobbiesInfo.sport;
+            document.getElementById('entertainment').textContent = hobbiesInfo.entertainment;
+
+            // Load skills info
+            const skills = document.getElementById('skillsInfo') || {
+                frontend: ["HTML", "CSS", "JS", "React"],
+                backend: ["Node.js", "Python", "Java"],
+                database: ["MySQL", "MongoDB", "Elasticsearch"],
+                deploy: ["Nginx", "Docker"]
+            };
+
+            <div class="skill-category">
+                    <div class="skill-badge" data-category="frontend">
+                        <span class="skill-label">Frontend</span>
+                    </div>
+                    <div class="advanced-skills" data-category="frontend">
+                        <div class="skill-item">
+                            <span class="skill-name">HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                        </div>
+                    </div>
+                </div>
+            Object.keys(skills).forEach(key => {
+                let content = ``;
+                skills[key].forEach(skill => content += `
+                    <div class="skill-category">
+                        <div class="skill-badge" data-category="frontend">
+                            <span class="skill-label">Frontend</span>
+                        </div>
+                        <div class="advanced-skills" data-category="frontend">
+                        </div>
+                    </div>        
+                `);
+            })
+        }
+
+        // Save functions
+        function saveBasicInfo() {
+            const name = document.querySelector('.name').textContent;
+            const slogan = document.querySelector('.slogan').textContent;
+            saveToLocalStorage('basicInfo', { name, slogan });
+        }
+
+        function saveContactInfo() {
+            const values = Array.from(document.querySelectorAll('.section-title + .info-container .info-value'))
+                .map(value => value.textContent);
+            saveToLocalStorage('contactInfo', values);
+        }
+
+        function saveHobbiesInfo() {
+            const values = Array.from(document.querySelectorAll('.section-title + .info-container .info-value'))
+                .map(value => value.textContent);
+            saveToLocalStorage('hobbiesInfo', values);
+        }
+
+        function saveProjectsInfo() {
+            const title = document.querySelector('.project-title').textContent;
+            const features = document.querySelector('.project-features ul').innerHTML;
+            saveToLocalStorage('projectInfo', { title, features });
+        }
+
+        function saveQuote() {
+            const quote = document.querySelector('.quote').textContent;
+            saveToLocalStorage('quote', quote);
+        }
+
         // Add animation to skills badges
         const skillBadges = document.querySelectorAll('.skill-badge');
-        skillBadges.forEach((badge, index) => {
-            badge.style.animation = `fadeIn ${index * 0.2 + 1}s ease forwards`;
+
+        // Edit mode toggle function
+        function toggleEditMode(editIcon) {
+            const section = editIcon.closest('.section');
+            const isEditMode = section.classList.toggle('edit-mode');
+            
+            if (!isEditMode) {
+                // Save data when exiting edit mode
+                const sectionTitle = section.querySelector('.section-title').textContent;
+                switch (sectionTitle) {
+                    case 'Thông Tin Liên Hệ':
+                        saveContactInfo();
+                        break;
+                    case 'Sở Thích':
+                        saveHobbiesInfo();
+                        break;
+                    case 'Dự Án':
+                        saveProjectsInfo();
+                        break;
+                    case 'Lời Trích Dẫn':
+                        saveQuote();
+                        break;
+                }
+            }
+        }
+
+        // Save functions
+        function saveBasicInfo() {
+            const name = document.querySelector('.name').textContent;
+            const slogan = document.querySelector('.slogan').textContent;
+            saveToLocalStorage('basicInfo', { name, slogan });
+        }
+
+        function saveContactInfo() {
+            const values = Array.from(document.querySelectorAll('.section-title + .info-container .info-value'))
+                .map(value => value.textContent);
+            saveToLocalStorage('contactInfo', values);
+        }
+
+        function saveHobbiesInfo() {
+            const values = Array.from(document.querySelectorAll('.section-title + .info-container .info-value'))
+                .map(value => value.textContent);
+            saveToLocalStorage('hobbiesInfo', values);
+        }
+
+        function saveProjectsInfo() {
+            const title = document.querySelector('.project-title').textContent;
+            const features = document.querySelector('.project-features ul').innerHTML;
+            saveToLocalStorage('projectInfo', { title, features });
+        }
+
+        function saveQuote() {
+            const quote = document.querySelector('.quote').textContent;
+            saveToLocalStorage('quote', quote);
+        }
+
+        // Load saved data when page loads
+        loadSavedData();
+
+        // Add animation to skills badges
+        skillBadges.forEach(badge => {
+            const category = badge.getAttribute('data-category');
+            const advancedSkills = document.querySelector(`.advanced-skills[data-category="${category}"]`);
+            
+            badge.addEventListener('click', () => {
+                badge.classList.toggle('active');
+                advancedSkills.classList.toggle('active');
+            });
         });
     </script>
 </body>
