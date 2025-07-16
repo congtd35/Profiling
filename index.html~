@@ -1402,6 +1402,9 @@
                         entertainment: document.getElementById('entertainment').textContent
                     })
                 }
+                
+            
+                
                 // Show success message
                 showSuccessMessage(container);
             };
