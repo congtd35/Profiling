@@ -647,7 +647,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .modal.show {
+        .modalch angeColor.show {
             opacity: 1;
         }
 
@@ -1283,71 +1283,6 @@
                 });
             });
         };
-
-        // Save functions
-        function saveBasicInfo() {
-            const name = document.querySelector('.name').textContent;
-            const slogan = document.querySelector('.slogan').textContent;
-            saveToLocalStorage('basicInfo', { name, slogan });
-        }
-
-        function saveContactInfo() {
-            const values = Array.from(document.querySelectorAll('.section-title + .info-container .info-value'))
-                .map(value => value.textContent);
-            saveToLocalStorage('contactInfo', values);
-        }
-
-        function saveHobbiesInfo() {
-            saveToLocalStorage('hobbiesInfo', {
-                hobby: document.getElementById('hobby').textContent,
-                sport: document.getElementById('sport').textContent,
-                entertainment: document.getElementById('entertainment').textContent
-            });
-        }
-
-        function saveProjectsInfo() {
-            const title = document.querySelector('.project-title').textContent;
-            const features = document.querySelector('.project-features ul').innerHTML;
-            saveToLocalStorage('projectInfo', { title, features });
-        }
-
-        function saveQuote() {
-            const quote = document.querySelector('.quote').textContent;
-            saveToLocalStorage('quote', quote);
-        }
-
-        // Add animation to skills badges
-        const skillBadges = document.querySelectorAll('.skill-badge');
-
-        // Save functions
-        function saveBasicInfo() {
-            const name = document.querySelector('.name').textContent;
-            const slogan = document.querySelector('.slogan').textContent;
-            saveToLocalStorage('basicInfo', { name, slogan });
-        }
-
-        function saveContactInfo() {
-            const values = Array.from(document.querySelectorAll('.section-title + .info-container .info-value'))
-                .map(value => value.textContent);
-            saveToLocalStorage('contactInfo', values);
-        }
-
-        function saveHobbiesInfo() {
-            const values = Array.from(document.querySelectorAll('.section-title + .info-container .info-value'))
-                .map(value => value.textContent);
-            saveToLocalStorage('hobbiesInfo', values);
-        }
-
-        function saveProjectsInfo() {
-            const title = document.querySelector('.project-title').textContent;
-            const features = document.querySelector('.project-features ul').innerHTML;
-            saveToLocalStorage('projectInfo', { title, features });
-        }
-
-        function saveQuote() {
-            const quote = document.querySelector('.quote').textContent;
-            saveToLocalStorage('quote', quote);
-        }
 
         // Generic function to handle section editing
         function setupEditableSection(options) {
